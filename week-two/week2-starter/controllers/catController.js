@@ -17,9 +17,13 @@ const getCat = (req, res) => {
   }
 };
 
+const postCat = (req, res) => {
+  console.log(req.body);
+  res.send('adding a cat');
+};
+
 const modifyCat = (req, res) => {};
 
-const postCat = (req, res) => {};
 
 const deleteCat = (req, res) => {};
 
