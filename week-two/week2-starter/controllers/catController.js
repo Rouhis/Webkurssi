@@ -8,7 +8,7 @@ const getCats = async (req, res) => {
 };
 
 const getCat = async (req,res) =>{
-  const cat = await catModel.getCatById(res,req.params.catid);
+  const cat = await catModel.getCatById(res,req.params.catId);
    if(cat){
        res.json(cat);
    }

@@ -1,5 +1,4 @@
 "use strict";
-// ./models/catModel.js
 const pool = require("../database/db");
 const promisePool = pool.promise();
 
@@ -14,11 +13,11 @@ const getAllCats = async (res) => {
   }
 };
 
-const getCatById = async (res) => {
+const getCatById = async (res, catId) => {
   try {
-  
-    const rows = await promisePool.query("SELECT * FROM wop_cat WHERE cat_id = ?",[catId]);
-    return rows;
+    const [rows] =
+      await promisePool.query("SELECT * FROM wop_cat WHERE cat_id = ?", [catId]);
+    return rows[0];
   } catch (e) {
     console.error("error", e.message);
     res.status(500).send(e.message);
@@ -27,5 +26,5 @@ const getCatById = async (res) => {
 
 module.exports = {
   getAllCats,
-  getCatById,
+  getCatById
 };
