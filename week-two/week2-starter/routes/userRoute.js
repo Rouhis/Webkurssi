@@ -1,20 +1,18 @@
 'use strict';
 const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/userController');
+const app = express();
+const cors = require('cors');
+const catRouter = require('./routes/catRoute')
+const userRouter = require('./routes/userRoute')
+const port = 8000;
 
-router.get('/', userController.getUsers);
+app.use(cors());
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-router.get("/:userId", userController.getUser); 
+app.use('/cat', catRouter);
+app.use('/user', userRouter)
 
-router.post("/", userController.postUser);
-  
-  router.put("/", (req, res) => {
-    res.send("From this endpoint you can edit users.");
-  });
-  
-  router.delete("/", (req, res) => {
-    res.send("From this endpoint you can delete .");
-  });
 
-module.exports = router;
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
