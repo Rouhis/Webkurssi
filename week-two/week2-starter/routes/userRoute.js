@@ -7,9 +7,9 @@ router.get('/', userController.getUsers);
 
 router.get("/:userId", userController.getUser); 
 
-router.post("/", userController.postUser);
+router.post("/", userController.createUser);
   
-  router.put("/", (req, res) => {
+router.put("/", (req, res) => {
     res.send("From this endpoint you can edit users.");
   });
   
